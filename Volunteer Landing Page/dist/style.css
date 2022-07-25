@@ -1,0 +1,64 @@
+:root {
+	/* colors */
+	--white: #FFF;
+	--black: #222;
+	--grey: #474747;
+	--red: #aa182c;
+	--blue: #002f87;
+	--light-blue: #00abc8;
+	--green: #a2d45e;
+	--purple: #a45a95;
+	--orange: #f88d2a;
+	/* */
+
+
+	/* shadow colors */
+	--shadow-1: rgba(28,155,183,0.12);
+	--shadow-2: rgba(28,155,183,0.24);
+	--shadow-3: rgba(114,120,220,0.25);
+	--shadow-4: rgba(0,0,0,0.22);
+}
+
+span {
+	color: var(--light-blue);
+}
+
+#landing-page {
+
+	margin: 50px 100px;
+
+	font-family: sans-serif;
+	color: var(--black);
+}
+
+#header-container {
+
+}
+
+.header {
+
+}
+
+.greeting {
+
+}
+
+.welcome {
+
+}
+
+.CTA {
+
+}
+
+#item-container {
+
+}
+
+.item {
+
+}
+
+a {
+
+}
