@@ -5,7 +5,7 @@
 }
 
 :root {
-	/* colors */
+	/* color palette */
 	--white: rgba(255, 255, 255, 1);
 	--black: rgba(34, 34, 34, 1);
 	--grey: rgba(71, 71, 71, 1);
@@ -23,44 +23,98 @@
 	--heavy-shadow: 0px 2px 15px rgba(0,0,0,0.5);
 	/* resizing ratios */
 	--help-icon-padding: 20px;
+	--card-and-help-padding: 40px 45px 45px 45px;
+	--border-radius: 30px;
+	--page-margins: 100px;
+	/* drop-in animations */
+	--drop-in-duration: 0.9s;
+	--drop-in-interval: 1.5s;
+	/* underline animations */
+	--underline-margin: -5px;
+	--underline-width: 4px;
+	--underline-duration: 0.3s;
+	/* font-sizes */
+	--title-font: 96px;
+	--header-font: 36px;
+	--desc-font: max(20px, 1.3vw);
+	--desc-help-font: max(calc(12px + 1.5vw), 2vw);
+	--link-font: 20px;
 	--help-char-size: 10em;
-	--item-and-help-padding: 40px 45px 45px 45px;
 }
 
+/* onload drop-in animations */ 
+.drop-in-1 {
+	animation: drop-in var(--drop-in-duration) ease 0.5s backwards;
+}
+   
+.drop-in-2 {
+	animation: drop-in var(--drop-in-duration) ease calc(0.5s + var(--drop-in-interval)) backwards;
+}
+
+.drop-in-3 {
+	animation: drop-in var(--drop-in-duration) ease calc(0.5s + var(--drop-in-interval) + var(--drop-in-interval)) backwards;
+}
+   
+@keyframes drop-in {
+	from {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translate(0px);
+	}
+}
+/* onload drop-in animations */
+
+/* highlight color */
 span {
 	color: var(--light-blue);
 }
+/* highlight color */
 
 #landing-page {
 
-	margin: 50px 100px;
+	margin: 50px 0;
 
 	font-family: sans-serif;
 	color: var(--grey);
 }
 
+#header-container {
+	margin: 0 var(--page-margins);
+}
+
 .header-greeting-top {
 
-	font-size: 96px;
+	font-size: var(--title-font);
 	font-weight: 600;
 	text-shadow: var(--light-shadow);
 }
 
 .header-greeting-bottom {
-	margin-bottom: 110px;
+	margin-bottom: 90px;
 
-	font-size: 36px;
+	font-size: var(--header-font);
 	font-weight: 600;
 	text-shadow: var(--light-medium-shadow);
 }
 
 #CTA {
-	/* position: sticky; */
-	margin-bottom: 20px;
+	z-index: 3;
+	position: sticky;
+	top: 0;
 
-	font-size: 36px;
+	margin-bottom: 15px;
+	padding: 20px var(--page-margins);
+
+	background-color: var(--white);
+
+	font-size: var(--header-font);
 	font-weight: 600;
 	text-shadow: var(--light-medium-shadow);
+
+	/* opacity: 0.95; */
 }
 
 #CTA p {
@@ -74,6 +128,7 @@ span {
 	text-decoration: none;
 }
 
+/* hover underline animation */
 #CTA a:after { 
     display: block;
     position: absolute;
@@ -81,17 +136,17 @@ span {
     bottom: 0;
     left: 50%; 
 	
-	height: 4px;
+	height: var(--underline-width);
     width: 0;
 
-    margin-bottom: -5px;
+    margin-bottom: var(--underline-margin);
 
     background: none repeat scroll 0 0 transparent;
     background: var(--light-blue);
 
     content: "";
 
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    transition: width var(--underline-duration) ease 0s, left var(--underline-duration) ease 0s;
 }
 
 #CTA a:hover:after { 
@@ -99,50 +154,50 @@ span {
 
     width: 100%; 
 }
+/* hover underline animation */
 
-#item-container {
-	margin-bottom: 30px;
+#card-container {
+	margin: 0 var(--page-margins) 30px var(--page-margins);
 
 	display: flex;
 	flex-direction: column;
-	gap: 30px;
+	gap: 35px;
 }
 
-.item {
+.card {
 	z-index: 2;
 	transform-style: preserve-3d;
 	position: relative;
 
-	padding: var(--item-and-help-padding);
+	padding: var(--card-and-help-padding);
 
 	font-weight: 600;
 	color: white;
 	text-shadow: var(--light-medium-shadow);
 
-	border-radius: 30px;
+	border-radius: var(--border-radius);
 	box-shadow: var(--light-medium-shadow);
 }
 
-.item-header {
-
-	width: fit-content;
+.card-header {
+	width: max-content;
 
 	margin-bottom: 10px;
 	padding-bottom: 5px;
 
-	font-size: 36px;
+	font-size: var(--header-font);
 	text-shadow: var(--light-shadow);
 
 	border-bottom: 3px solid white;
 }
 
-.item-desc {
+.card-desc {
+	max-width: 45%;
 
-	max-width: 43%;
-
-	font-size: 24px;
+	font-size: var(--desc-font);
 }
 
+/* card background gradients */
 .applications {
 	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--light-blue), var(--light-blue), var(--light-blue));
 }
@@ -158,8 +213,10 @@ span {
 .resources {
 	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--purple), var(--purple), var(--purple));
 }
+/* card background gradients */
 
-.item::before {
+/* card background images */
+.card::before {
 	z-index: 1;
 	transform: translateZ(-1px);
 	position: absolute;
@@ -176,8 +233,9 @@ span {
 
 	content: '';
 
-	border-radius: 30px;
+	border-radius: var(--border-radius);
 }
+/* card background images */
 
 .link-container {
 	display: inline-flex;
@@ -187,11 +245,10 @@ span {
 	margin-top: 20px;
 }
 
-.item a {
-
+.card a {
 	padding: 10px 25px;
 
-	font-size: 18px;
+	font-size: var(--link-font);
 	color: white;
 	text-decoration: none;
 
@@ -200,12 +257,12 @@ span {
 	box-shadow: var(--light-medium-shadow);
 }
 
-.item a:hover {
+.card a:hover {
 	background-color: rgba(255, 255, 255, 0.2);
 	
 	box-shadow: var(--heavy-shadow);
 
-	transition: 0.3s;
+	transition: 0.2s;
 }
 
 #help {
@@ -213,7 +270,8 @@ span {
 	align-items: center;
 	gap: 40px;
 
-	padding: var(--item-and-help-padding);
+	margin: 0 var(--page-margins);
+	padding: var(--card-and-help-padding);
 
 	background-color: var(--grey);
 
@@ -221,7 +279,7 @@ span {
 	color: white;
 	text-shadow: var(--light-medium-shadow);
 
-	border-radius: 30px;
+	border-radius: var(--border-radius);
 	box-shadow: var(--light-medium-shadow);
 }
 
@@ -241,7 +299,6 @@ span {
 }
 
 .help-char {
-
 	font-size: var(--help-char-size);
 	color: var(--grey);
 }
@@ -252,7 +309,7 @@ span {
 
 .help-desc {
 	display: inline;
-	font-size: 36px;
+	font-size: var(--desc-help-font);
 }
 
 #help a {
@@ -263,6 +320,7 @@ span {
 	white-space: nowrap;
 }
 
+/* hover underline animation */
 .inline-help-link:after { 
     display: inline-block;
     position: absolute;
@@ -270,17 +328,17 @@ span {
     bottom: 0;
     left: 50%; 
 	
-	height: 4px;
+	height: var(--underline-width);
     width: 0;
 
-    margin-bottom: -5px;
+    margin-bottom: var(--underline-margin);
 
     background: none repeat scroll 0 0 transparent;
     background: var(--light-blue);
 
     content: "";
 
-    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+    transition: width var(--underline-duration) ease 0s, left var(--underline-duration) ease 0s;
 }
 
 .inline-help-link:hover:after { 
@@ -288,11 +346,13 @@ span {
 
     width: 96%; 
 }
+/* hover underline animation */
 
 #TY {
-	margin: 60px 0;
+	margin: 60px var(--page-margins);
 
-	font-size: 96px;
+	text-align: center;
+	font-size: var(--title-font);
 	font-weight: 600;
 	text-shadow: var(--light-shadow);
 }
