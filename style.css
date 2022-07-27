@@ -29,17 +29,18 @@
 	/* drop-in animations */
 	--drop-in-duration: 0.9s;
 	--drop-in-interval: 1.5s;
-	/* underline animations */
+	/* underline display and animations */
 	--underline-margin: -5px;
 	--underline-width: 4px;
-	--underline-duration: 0.3s;
+	--underline-width-large: 8px;
+	--underline-duration: 0.25s;
 	/* font-sizes */
 	--title-font: 96px;
 	--header-font: 36px;
 	--desc-font: max(20px, 1.3vw);
-	--desc-help-font: max(calc(12px + 1.5vw), 2vw);
-	--link-font: 20px;
-	--help-char-size: 10em;
+	--desc-help-font: max(calc(8px + 1.5vw), 2vw);
+	--link-font: max(16px, 1.0vw);
+	--help-char-size: calc(5em + 3vw);
 }
 
 /* onload drop-in animations */ 
@@ -70,6 +71,7 @@
 /* highlight color */
 span {
 	color: var(--light-blue);
+	position: relative;
 }
 /* highlight color */
 
@@ -93,7 +95,7 @@ span {
 }
 
 .header-greeting-bottom {
-	margin-bottom: 90px;
+	margin-bottom: 105px;
 
 	font-size: var(--header-font);
 	font-weight: 600;
@@ -101,9 +103,9 @@ span {
 }
 
 #CTA {
-	z-index: 3;
+	/* z-index: 3;
 	position: sticky;
-	top: 0;
+	top: 0; */
 
 	margin-bottom: 15px;
 	padding: 20px var(--page-margins);
@@ -118,7 +120,7 @@ span {
 }
 
 #CTA p {
-	display: inline-block;
+	display: inline;
 }
 
 #CTA a {
@@ -172,12 +174,68 @@ span {
 	padding: var(--card-and-help-padding);
 
 	font-weight: 600;
-	color: white;
+	color: var(--white);
 	text-shadow: var(--light-medium-shadow);
 
 	border-radius: var(--border-radius);
 	box-shadow: var(--light-medium-shadow);
 }
+
+/* card background gradients */
+.applications {
+	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--light-blue), var(--light-blue));
+}
+
+.information {
+	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--green),var(--green));
+}
+
+.missions {
+	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--orange),var(--orange));
+}
+
+.resources {
+	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--purple), var(--purple));
+}
+/* card background gradients */
+
+/* card background images */
+.card::before {
+	z-index: 1;
+	transform: translateZ(-1px);
+	position: absolute;
+	top: 0;
+	left: 30%;
+
+	height: 100%;
+	width: 70%;
+
+	background-position: center; 
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+
+	content: '';
+
+	border-radius: var(--border-radius);
+}
+
+.applications::before {
+	background-image: url('./img/BRA_2008_Antonia_After_03.png');
+}
+
+.information::before {
+	background-image: url('./img/ETH_2010_Morris_007.png');
+}
+
+.missions::before {
+	background-image: url('./img/COL_2007_Bogota_Care_Center_9511.png');
+}
+
+.resources::before {
+	background-image: url('./img/COL_2007_Care_Center_9470.png');
+}
+/* card background images */
 
 .card-header {
 	width: max-content;
@@ -188,54 +246,14 @@ span {
 	font-size: var(--header-font);
 	text-shadow: var(--light-shadow);
 
-	border-bottom: 3px solid white;
+	border-bottom: 3px solid var(--white);
 }
 
 .card-desc {
-	max-width: 45%;
+	max-width: 40%;
 
 	font-size: var(--desc-font);
 }
-
-/* card background gradients */
-.applications {
-	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--light-blue), var(--light-blue), var(--light-blue));
-}
-
-.information {
-	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--green), var(--green), var(--green));
-}
-
-.missions {
-	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--orange), var(--orange), var(--orange));
-}
-
-.resources {
-	background-image: linear-gradient(to left, var(--transparent), var(--transparent), var(--purple), var(--purple), var(--purple));
-}
-/* card background gradients */
-
-/* card background images */
-.card::before {
-	z-index: 1;
-	transform: translateZ(-1px);
-	position: absolute;
-	top: 0;
-	left: 0;
-
-	width: 100%;
-	height: 100%;
-
-	background-image: url('./img/applications1.jpg');
-	background-repeat: no-repeat;
-	background-position: 100% 80%;
-	background-size: cover;
-
-	content: '';
-
-	border-radius: var(--border-radius);
-}
-/* card background images */
 
 .link-container {
 	display: inline-flex;
@@ -249,10 +267,10 @@ span {
 	padding: 10px 25px;
 
 	font-size: var(--link-font);
-	color: white;
+	color: var(--white);
 	text-decoration: none;
 
-	border: 2px solid white;
+	border: 2px solid var(--white);
 	border-radius: 1000px;
 	box-shadow: var(--light-medium-shadow);
 }
@@ -262,8 +280,235 @@ span {
 	
 	box-shadow: var(--heavy-shadow);
 
-	transition: 0.2s;
+	transition: 0.25s;
 }
+
+/* smaller viewport card design */
+@media screen and (max-width: 1300px) {
+	.card {
+		display: flex;
+		justify-content: space-between;
+		gap: 30px;
+
+		height: 700px;
+	}
+
+	/* card background images */
+	.card::before {
+		z-index: 1;
+		transform: translateZ(-1px);
+		position: absolute;
+		top: 30%;
+		left: 0;
+	
+		height: 70%;
+		width: 100%;
+	
+		background-position: center; 
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	
+		content: '';
+	
+		border-radius: var(--border-radius);
+	}
+	/* card background images */
+
+	/* card background gradients */
+	.applications {
+		background-image: linear-gradient(to top, var(--transparent), var(--transparent), var(--light-blue), var(--light-blue));
+	}
+	
+	.information {
+		background-image: linear-gradient(to top, var(--transparent), var(--transparent), var(--green),var(--green));
+	}
+	
+	.missions {
+		background-image: linear-gradient(to top, var(--transparent), var(--transparent), var(--orange),var(--orange));
+	}
+	
+	.resources {
+		background-image: linear-gradient(to top, var(--transparent), var(--transparent), var(--purple), var(--purple));
+	}
+	/* card background gradients */
+
+	.card-body {
+		display: flex;
+		flex-direction: column;
+
+		max-width: max-content;
+
+	}
+
+	.card-desc {
+		min-width: fit-content;
+	}
+
+	.link-container {
+		transform: translateY(-13px);
+	}
+	
+	.card a {
+		white-space: nowrap;
+	}
+}
+/* smaller viewport card design */
+
+@media screen and (max-width: 1000px) {
+	.card {
+		display: block;
+
+		height: unset;
+	}
+
+	.card::before {
+		background-image: unset;
+	}
+
+	.card-desc {
+		max-width: unset;
+	}
+
+	.link-container {
+		transform: unset;
+	}
+	
+	.applications {
+		background-color: var(--light-blue);
+	}
+
+	.information {
+		background-color: var(--green);
+	}
+
+	.missions {
+		background-color: var(--orange);
+	}
+
+	.resources {
+		background-color: var(--purple);
+	}
+}
+
+/* mobile devices */
+@media only screen and (max-device-width: 1300px) {
+	.card {
+		display: flex;
+		justify-content: space-between;
+		gap: 30px;
+
+		height: 700px;
+
+		background-color: unset;
+	}
+
+	/* card background images */
+	.card::before {
+		z-index: 1;
+		transform: translateZ(-1px);
+		position: absolute;
+		top: 30%;
+		left: 0;
+	
+		height: 70%;
+		width: 100%;
+	
+		background-position: center; 
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	
+		content: '';
+	
+		border-radius: var(--border-radius);
+	}
+	.applications::before {
+		background-image: url('./img/BRA_2008_Antonia_After_03.png');
+	}
+	
+	.information::before {
+		background-image: url('./img/ETH_2010_Morris_007.png');
+	}
+	
+	.missions::before {
+		background-image: url('./img/COL_2007_Bogota_Care_Center_9511.png');
+	}
+	
+	.resources::before {
+		background-image: url('./img/COL_2007_Care_Center_9470.png');
+	}
+	/* card background images */
+	/* card background images */
+
+	/* card background gradients */
+	.applications {
+		background-image: linear-gradient(to top, var(--transparent), var(--transparent), var(--light-blue), var(--light-blue));
+	}
+	
+	.information {
+		background-image: linear-gradient(to top, var(--transparent), var(--transparent), var(--green),var(--green));
+	}
+	
+	.missions {
+		background-image: linear-gradient(to top, var(--transparent), var(--transparent), var(--orange),var(--orange));
+	}
+	
+	.resources {
+		background-image: linear-gradient(to top, var(--transparent), var(--transparent), var(--purple), var(--purple));
+	}
+	/* card background gradients */
+
+	.card-body {
+		display: flex;
+		flex-direction: column;
+
+		max-width: max-content;
+
+	}
+
+	.card-desc {
+		min-width: fit-content;
+	}
+
+	.link-container {
+		transform: translateY(-13px);
+	}
+	
+	.card a {
+		white-space: nowrap;
+	}
+}
+/* mobile devices */
+
+#TY {
+	margin: 80px var(--page-margins);
+
+	text-align: center;
+	font-size: var(--title-font);
+	font-weight: 600;
+	text-shadow: var(--light-shadow);
+}
+
+/* underline display */
+#TY span:after { 
+    display: inline;
+    position: absolute;
+
+    bottom: 0;
+    left: 6px; 
+	
+	height: var(--underline-width-large);
+    width: 100%;
+
+    margin-bottom: var(--underline-margin);
+
+    background: none repeat scroll 0 0 transparent;
+    background: var(--light-blue);
+
+	content: "";
+}
+/* underline display */
 
 #help {
 	display: flex;
@@ -276,7 +521,7 @@ span {
 	background-color: var(--grey);
 
 	font-weight: 600;
-	color: white;
+	color: var(--white);
 	text-shadow: var(--light-medium-shadow);
 
 	border-radius: var(--border-radius);
@@ -294,7 +539,7 @@ span {
 
 	padding: var(--help-icon-padding);
 
-	background-color: white;
+	background-color: var(--white);
 	border-radius: 50%;
 }
 
@@ -309,6 +554,8 @@ span {
 
 .help-desc {
 	display: inline;
+
+	line-height: 1.3em;
 	font-size: var(--desc-help-font);
 }
 
@@ -347,12 +594,3 @@ span {
     width: 96%; 
 }
 /* hover underline animation */
-
-#TY {
-	margin: 60px var(--page-margins);
-
-	text-align: center;
-	font-size: var(--title-font);
-	font-weight: 600;
-	text-shadow: var(--light-shadow);
-}
