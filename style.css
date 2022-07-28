@@ -38,11 +38,11 @@
 	--underline-margin: -5px;
 	--underline-width: 4px;
 	--underline-width-large: 8px;
-	--underline-duration: 0.25s;
+	--underline-duration: 0.3s;
 	/* font-sizes */
 	--title-font: 96px;
 	--header-font: 36px;
-	--desc-font: max(20px, 1.3vw);
+	--desc-font: max(24px, 1.3vw);
 	--desc-help-font: max(calc(8px + 1.5vw), 2vw);
 	--link-font: max(16px, 1.0vw);
 	--help-char-size: calc(5em + 3vw);
@@ -73,7 +73,7 @@
 }
 /* onload drop-in animations */
 
-/* onload fade-in left animations 
+/* onload fade-in left animations
 .applications {
 	animation: fade-in-left var(--fade-left-duration) ease var(	--fade-left-initial) backwards;
 }
@@ -345,6 +345,11 @@ span {
 		content: '';
 	
 		border-radius: var(--border-radius);
+	}
+
+	.applications::before {
+		background-image: url('./img/BRA_2008_Antonia_After_03-2.png');
+
 	}
 	/* card background images */
 
