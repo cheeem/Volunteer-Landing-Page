@@ -26,9 +26,14 @@
 	--card-and-help-padding: 40px 45px 45px 45px;
 	--border-radius: 30px;
 	--page-margins: 100px;
-	/* drop-in animations */
+	/* drop-in animation */
+	--drop-in-initial: 0.5s;
 	--drop-in-duration: 0.9s;
 	--drop-in-interval: 1.5s;
+	/* fade-in left animation */
+	--fade-left-initial: 0s;
+	--fade-left-duration: 0.7s;
+	--fade-left-interval: 0.3s;
 	/* underline display and animations */
 	--underline-margin: -5px;
 	--underline-width: 4px;
@@ -45,15 +50,15 @@
 
 /* onload drop-in animations */ 
 .drop-in-1 {
-	animation: drop-in var(--drop-in-duration) ease 0.5s backwards;
+	animation: drop-in var(--drop-in-duration) ease var(--drop-in-initial) backwards;
 }
    
 .drop-in-2 {
-	animation: drop-in var(--drop-in-duration) ease calc(0.5s + var(--drop-in-interval)) backwards;
+	animation: drop-in var(--drop-in-duration) ease calc(var(--drop-in-initial) + var(--drop-in-interval)) backwards;
 }
 
 .drop-in-3 {
-	animation: drop-in var(--drop-in-duration) ease calc(0.5s + var(--drop-in-interval) + var(--drop-in-interval)) backwards;
+	animation: drop-in var(--drop-in-duration) ease calc(var(--drop-in-initial) + var(--drop-in-interval) + var(--drop-in-interval)) backwards;
 }
    
 @keyframes drop-in {
@@ -67,6 +72,34 @@
 	}
 }
 /* onload drop-in animations */
+
+/* onload fade-in left animations 
+.applications {
+	animation: fade-in-left var(--fade-left-duration) ease var(	--fade-left-initial) backwards;
+}
+   
+.information {
+	animation: fade-in-left var(--fade-left-duration) ease calc(var(--fade-left-initial) + var(--fade-left-interval)) backwards;
+}
+
+.missions {
+	animation: fade-in-left var(--fade-left-duration) ease calc(var(--fade-left-initial) + var(--fade-left-interval) + var(--fade-left-interval)) backwards;
+}
+
+.resources {
+	animation: fade-in-left var(--fade-left-duration) ease calc(var(--fade-left-initial) + var(--fade-left-interval) + var(--fade-left-interval) + var(--fade-left-interval)) backwards;
+}
+
+@keyframes fade-in-left {
+	0% {
+	   opacity: 0;
+	   transform: translateX(-100px);
+	}
+	100% {
+	   opacity: 1;
+	   transform: translateX(0);
+	}
+}
 
 /* highlight color */
 span {
@@ -353,9 +386,12 @@ span {
 		white-space: nowrap;
 	}
 }
-/* smaller viewport card design */
 
 @media screen and (max-width: 1000px) {
+	#landing-page {
+		--title-font: 64px
+	}
+
 	.card {
 		display: block;
 
@@ -390,6 +426,18 @@ span {
 		background-color: var(--purple);
 	}
 }
+@media screen and (max-width: 700px) {
+	#landing-page {
+		--page-margins: 30px;
+	}
+
+	.card a {
+		font-size: 14px;
+	}
+}
+
+/* smaller viewport card design */
+
 
 /* mobile devices */
 @media only screen and (max-device-width: 1300px) {
@@ -438,7 +486,6 @@ span {
 	.resources::before {
 		background-image: url('./img/COL_2007_Care_Center_9470.png');
 	}
-	/* card background images */
 	/* card background images */
 
 	/* card background gradients */
