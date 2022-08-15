@@ -43,9 +43,9 @@
 	--title-font: 96px;
 	--header-font: 36px;
 	--desc-font: max(24px, 1.3vw);
-	--desc-help-font: max(calc(8px + 1.5vw), 2vw);
+	--desc-help-font: max(calc(6px + 1.5vw), 2vw);
 	--link-font: max(16px, 1.0vw);
-	--help-char-size: calc(5em + 3vw);
+	--help-char-size: calc(3em + 3vw);
 }
 
 /* onload drop-in animations */ 
@@ -300,6 +300,7 @@ span {
 	padding: 10px 25px;
 
 	font-size: var(--link-font);
+	font-weight: 100;
 	color: var(--white);
 	text-decoration: none;
 
@@ -311,7 +312,7 @@ span {
 .card a:hover {
 	background-color: rgba(255, 255, 255, 0.2);
 	
-	box-shadow: var(--heavy-shadow);
+	/* box-shadow: var(--heavy-shadow); */
 
 	transition: 0.25s;
 }
@@ -394,7 +395,8 @@ span {
 
 @media screen and (max-width: 1000px) {
 	#landing-page {
-		--title-font: 64px
+		--title-font: 64px;
+		--desc-font: 20px;
 	}
 
 	.card {
@@ -533,35 +535,6 @@ span {
 }
 /* mobile devices */
 
-#TY {
-	margin: 80px var(--page-margins);
-
-	text-align: center;
-	font-size: var(--title-font);
-	font-weight: 600;
-	text-shadow: var(--light-shadow);
-}
-
-/* underline display */
-#TY span:after { 
-    display: inline;
-    position: absolute;
-
-    bottom: 0;
-    left: 6px; 
-	
-	height: var(--underline-width-large);
-    width: 100%;
-
-    margin-bottom: var(--underline-margin);
-
-    background: none repeat scroll 0 0 transparent;
-    background: var(--light-blue);
-
-	content: "";
-}
-/* underline display */
-
 #help {
 	display: flex;
 	align-items: center;
@@ -570,14 +543,9 @@ span {
 	margin: 0 var(--page-margins);
 	padding: var(--card-and-help-padding);
 
-	background-color: var(--grey);
-
 	font-weight: 600;
-	color: var(--white);
+	color: var(--grey);
 	text-shadow: var(--light-medium-shadow);
-
-	border-radius: var(--border-radius);
-	box-shadow: var(--light-medium-shadow);
 }
 
 .help-icon {
@@ -591,13 +559,13 @@ span {
 
 	padding: var(--help-icon-padding);
 
-	background-color: var(--white);
+	background-color: var(--grey);
 	border-radius: 50%;
 }
 
 .help-char {
 	font-size: var(--help-char-size);
-	color: var(--grey);
+	color: var(--white);
 }
 
 .help-body {
